@@ -174,28 +174,6 @@ class HomePage extends React.Component<
                 <></>
               )}
             </div>
-
-            <div className='mt-12 fixed bottom-0 left-0 w-[512px] shadow-md border-[0.25em] border-neutral-200 p-4'>
-              <div>
-                <div className='bg-white rounded-md border-neutral-200 border-[0.25em] border-0'>
-                  <div className='flex items-center'>
-                    <p
-                      className='w-3 h-3 inline-block mr-4 border-2 border-green-400 bg-green-400 rounded-full'
-                      style={{
-                        boxShadow: '0 0 3px 2px #4ADE80;',
-                      }}
-                    ></p>
-                    <h2 className='text-lg font-bold flex'>
-                      {this.state.device?.manufacturer}{' '}
-                      {this.state.device?.name}
-                    </h2>
-                    <h2 className='text-md uppercase font-bold bg-green-400 px-4 py-1 rounded-full ml-4'>
-                      Connected MIDI Controller
-                    </h2>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
 
           <div className='flex-[4] px-4'>
@@ -203,50 +181,28 @@ class HomePage extends React.Component<
 
             <div className='relative p-4 flex flex-wrap bg-neutral-700 mt-4 shadow-md items-start content-start'>
               <Piano pressedNotes={pressedNotes}></Piano>
-              {/* {this.state.messages.length !== 0 ? (
-                <>
-                  <div className='absolute top-0 left-0 flex justify-center items-center w-full h-full'>
-                    <p className='text-center text-2xl font-light text-neutral-400'>
-                      Nothing to see here. Play some notes to get this started.
-                    </p>
-                  </div>
-                </>
-              ) : (
-                <></>
-              )} */}
-              {/* {this.state.messages.map(
-                (msg: ProcessedMIDIMessage, index: number) => (
-                  <div
-                    key={index}
-                    className='message min-w-fit flex items-center px-8 py-1 bg-neutral-600 m-4'
-                  >
-                    {msg.cc === 144 ? (
+            </div>
+
+            <div className='mt-12 border-[0.25em] w-fit mx-auto border-green-200 p-8 bg-green-100 dark:bg-green-900 dark:border-green-800'>
+              <div>
+                <div>
+                  <div className='flex items-center'>
+                    <h2 className='text-md uppercase font-bold bg-neutral-900 text-neutral-100 px-4 py-2 rounded-full mr-4'>
                       <p
-                        className='inline-block rounded-full p-1 text-green-400 bg-green-400 mr-2'
+                        className='w-2 h-2 inline-block mr-4 border-2 border-green-400 bg-green-400 dark:bg-green-500 dark:border-green-500 rounded-full relative bottom-[0.125em]'
                         style={{
-                          boxShadow: '0 0 10px 10px #4ADE80;',
+                          boxShadow: '0 0 3px 2px #4ADE80',
                         }}
                       ></p>
-                    ) : (
-                      <span className='inline-block rounded-full p-1 bg-red-600/50 mr-2'></span>
-                    )}
-
-                    <span
-                      className={`inline-block text-base ${
-                        msg.cc === 144
-                          ? 'font-semibold text-neutral-100'
-                          : 'font-light text-neutral-400'
-                      }`}
-                    >
-                      <span>
-                        {msg.noteName}
-                        {getAccidental(msg)}
-                        <span>{msg.octave}</span>
-                      </span>
-                    </span>
+                      Connected
+                    </h2>
+                    <h2 className='text-lg font-bold flex'>
+                      {this.state.device?.manufacturer}{' '}
+                      {this.state.device?.name}
+                    </h2>
                   </div>
-                )
-              )} */}
+                </div>
+              </div>
             </div>
           </div>
         </div>
