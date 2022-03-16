@@ -1,5 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
+  font-size: 62.5%;
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -13,4 +18,12 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.btn {
+  @apply px-4 py-2;
+  @apply mx-1;
+  @apply bg-neutral-500 text-neutral-50;
+  @apply rounded-md;
+  @apply text-xl;
 }
