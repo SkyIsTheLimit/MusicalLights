@@ -1,0 +1,47 @@
+.octave {
+  @apply relative mr-[0.08em];
+
+  font-size: 12px;
+
+  .whiteKey {
+    @apply w-[1em] h-[6em] bg-white mr-[0.08em] z-40;
+    @apply flex flex-col justify-end items-center;
+
+    &:last-child {
+      @apply mr-0;
+    }
+
+    &.pressed {
+      @apply bg-green-500;
+    }
+  }
+
+  .blackKey {
+    @apply w-[0.5em] h-[3.5em] bg-black;
+    @apply absolute z-10;
+
+    &.pressed {
+      @apply bg-green-500;
+    }
+
+    &.Db {
+      @apply left-[9.1%];
+    }
+
+    &.Eb {
+      @apply left-[26%];
+    }
+
+    &.Gb {
+      @apply left-[53%];
+    }
+
+    &.Ab {
+      @apply left-[68%];
+    }
+
+    &.Bb {
+      @apply left-[84%];
+    }
+  }
+}

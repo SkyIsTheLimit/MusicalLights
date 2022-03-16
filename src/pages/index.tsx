@@ -2,6 +2,7 @@ import React from 'react';
 import { getMIDIDevices } from '../lib/midi';
 import { Light, listLights, processMIDIMessage } from '../lib/utils';
 import LightComponent from '../components/light';
+import { Piano } from '../components/piano/piano';
 
 export const accidentals = [
   '',
@@ -86,7 +87,6 @@ class HomePage extends React.Component<
           });
         }
 
-        console.log('Device', device);
         device.onmidimessage = (msg: any) => {
           const [cc, value, velocity] = msg.data;
 
@@ -154,6 +154,8 @@ class HomePage extends React.Component<
     const getAccidental = (msg: ProcessedMIDIMessage) =>
       msg.accidental ? <sup>#</sup> : <></>;
 
+    const pressedNotes = this.state.messages.filter((msg) => msg.cc === 144);
+
     return (
       <div className='mx-auto'>
         <div className='flex'>
@@ -162,18 +164,27 @@ class HomePage extends React.Component<
               <h2 className='text-2xl font-bold'>
                 All Lights ({this.state.lights.length})
               </h2>
-              {this.state.lights.map((light: any, index: number) => (
-                <div key={index} className='flex-2'>
-                  <LightComponent light={light} />
-                </div>
-              ))}
+              {this.state.lights?.length ? (
+                this.state.lights.map((light: any, index: number) => (
+                  <div key={index} className='flex-2'>
+                    <LightComponent light={light} />
+                  </div>
+                ))
+              ) : (
+                <></>
+              )}
             </div>
 
             <div className='mt-12 fixed bottom-0 left-0 w-[512px] shadow-md border-[0.25em] border-neutral-200 p-4'>
               <div>
                 <div className='bg-white rounded-md border-neutral-200 border-[0.25em] border-0'>
                   <div className='flex items-center'>
-                    <p className='w-6 h-6 inline-block mr-4 bg-green-400 rounded-full'></p>
+                    <p
+                      className='w-3 h-3 inline-block mr-4 border-2 border-green-400 bg-green-400 rounded-full'
+                      style={{
+                        boxShadow: '0 0 3px 2px #4ADE80;',
+                      }}
+                    ></p>
                     <h2 className='text-lg font-bold flex'>
                       {this.state.device?.manufacturer}{' '}
                       {this.state.device?.name}
@@ -190,8 +201,9 @@ class HomePage extends React.Component<
           <div className='flex-[4] px-4'>
             <h2 className='text-2xl font-bold'>MIDI Notes Played</h2>
 
-            <div className='relative flex flex-wrap bg-neutral-700 mt-4 shadow-md min-h-[50vh] items-start content-start'>
-              {this.state.messages.length === 0 ? (
+            <div className='relative p-4 flex flex-wrap bg-neutral-700 mt-4 shadow-md items-start content-start'>
+              <Piano pressedNotes={pressedNotes}></Piano>
+              {/* {this.state.messages.length !== 0 ? (
                 <>
                   <div className='absolute top-0 left-0 flex justify-center items-center w-full h-full'>
                     <p className='text-center text-2xl font-light text-neutral-400'>
@@ -201,31 +213,40 @@ class HomePage extends React.Component<
                 </>
               ) : (
                 <></>
-              )}
-              {this.state.messages.map(
+              )} */}
+              {/* {this.state.messages.map(
                 (msg: ProcessedMIDIMessage, index: number) => (
                   <div
                     key={index}
                     className='message min-w-fit flex items-center px-8 py-1 bg-neutral-600 m-4'
                   >
                     {msg.cc === 144 ? (
-                      <span className='inline-block rounded-full p-2 text-green-400 bg-green-400 mr-2'></span>
+                      <p
+                        className='inline-block rounded-full p-1 text-green-400 bg-green-400 mr-2'
+                        style={{
+                          boxShadow: '0 0 10px 10px #4ADE80;',
+                        }}
+                      ></p>
                     ) : (
-                      <span className='inline-block rounded-full p-2 bg-red-400 mr-2'></span>
+                      <span className='inline-block rounded-full p-1 bg-red-600/50 mr-2'></span>
                     )}
 
-                    <span className='inline-block text-lg font-semibold text-neutral-100'>
-                      {/* {Math.round((msg.velocity / 127) * 10) / 10} */}
-
-                      <span className='text-2xl'>
+                    <span
+                      className={`inline-block text-base ${
+                        msg.cc === 144
+                          ? 'font-semibold text-neutral-100'
+                          : 'font-light text-neutral-400'
+                      }`}
+                    >
+                      <span>
                         {msg.noteName}
                         {getAccidental(msg)}
-                        <sub>{msg.octave}</sub>
+                        <span>{msg.octave}</span>
                       </span>
                     </span>
                   </div>
                 )
-              )}
+              )} */}
             </div>
           </div>
         </div>
