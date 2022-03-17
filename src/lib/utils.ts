@@ -75,6 +75,6 @@ export function setRandomColorAtSaturation(
 
 export function processMIDIMessage(message: ProcessedMIDIMessage) {
   if (message.cc === 144) {
-    //setRandomColorAtSaturation(message.velocity / 127);
+    setRandomColorAtSaturation(message.velocity / 127);
   }
 }
