@@ -1,9 +1,6 @@
 import React from 'react';
 import styles from './key.module.scss';
 
-const isPressed = (notes: string[] = [], whichOne: string) =>
-  notes.indexOf(whichOne) !== -1;
-
 interface KeyProps {
   note: 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G';
   accidental: '#' | 'b' | false;
@@ -12,23 +9,23 @@ interface KeyProps {
   isBlackPressed?: boolean;
 }
 
-export class Key extends React.Component<
-  KeyProps,
-  {
-    isWhitePressed: boolean;
-    isBlackPressed: boolean;
-  }
-> {
+interface KeyState {
+  isWhitePressed: boolean;
+  isBlackPressed: boolean;
+}
+
+export class Key extends React.Component<KeyProps, KeyState> {
   constructor(props: KeyProps) {
     super(props);
 
-    this.setState({
+    this.state = {
       isWhitePressed: false,
       isBlackPressed: false,
-    });
+    };
 
     this.render = this.render.bind(this);
   }
+
   press(key: 'black' | 'white', pressed: boolean) {
     if (key === 'white') {
       this.setState({
@@ -51,7 +48,7 @@ export class Key extends React.Component<
             className={`${styles.white} ${
               this.props?.isWhitePressed ? styles.pressed : ''
             }`}
-            // onClick={() => this.press('white', true)}
+            onClick={() => this.press('white', true)}
             onDragEnter={() => this.press('white', true)}
             onMouseDown={() => this.press('white', true)}
             onMouseUp={() => this.press('white', false)}
@@ -67,7 +64,7 @@ export class Key extends React.Component<
                     ? styles.flat
                     : ''
                 } ${this.props?.isBlackPressed ? styles.pressed : ''}`}
-                // onClick={() => this.press('black', true)}
+                onClick={() => this.press('black', true)}
                 onMouseDown={() => this.press('black', true)}
                 onMouseUp={() => this.press('black', false)}
                 onMouseLeave={() => this.press('black', false)}

@@ -22,14 +22,24 @@ a {
   box-sizing: border-box;
 }
 
-.btn {
+@mixin btn() {
   @apply px-4 py-1;
   @apply mx-1;
-  @apply bg-pink-500 dark:bg-pink-700 text-white dark:text-neutral-50;
   @apply rounded-md;
   @apply text-sm font-semibold;
+
+  &[disabled] {
+    @apply opacity-25;
+  }
 }
 
-.btn[disabled] {
-  @apply opacity-25;
+.on-btn {
+  @include btn();
+  @apply bg-neutral-500 dark:bg-neutral-700 text-white dark:text-neutral-50;
+  @apply appearance-none;
+}
+
+.off-btn {
+  @include btn();
+  @apply bg-neutral-500 dark:bg-neutral-700 text-white dark:text-neutral-50;
 }

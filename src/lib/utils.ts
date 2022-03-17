@@ -30,10 +30,20 @@ export type Light = {
   };
 };
 
+let bearerToken = null;
+
+export function setBearerToken(token: string) {
+  bearerToken = token;
+}
+
+export function getBearerToken() {
+  return bearerToken;
+}
+
 export function listLights() {
   return fetch('https://api.lifx.com/v1/lights/all', {
     headers: {
-      Authorization: 'Bearer <bearer token>',
+      Authorization: `Bearer ${bearerToken}`,
     },
   }).then((res) => res.json() as any as Light[]);
 }
@@ -42,7 +52,7 @@ export function setState(state: Record<string, any>, selector = 'all') {
   return fetch(`https://api.lifx.com/v1/lights/${selector}/state`, {
     method: 'PUT',
     headers: {
-      Authorization: 'Bearer <bearer token>',
+      Authorization: `Bearer ${bearerToken}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(state),
@@ -65,6 +75,6 @@ export function setRandomColorAtSaturation(
 
 export function processMIDIMessage(message: ProcessedMIDIMessage) {
   if (message.cc === 144) {
-    setRandomColorAtSaturation(message.velocity / 127);
+    //setRandomColorAtSaturation(message.velocity / 127);
   }
 }

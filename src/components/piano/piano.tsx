@@ -13,7 +13,7 @@ const getPressedNotesForRegister = (
 
 export const Piano = ((props) => {
   return (
-    <div className='flex w-fit justify-center text-inherit mx-auto shadow-md'>
+    <div className='flex w-fit justify-center text-inherit'>
       <Octave
         register={0}
         pressedNotes={getPressedNotesForRegister(0, props.pressedNotes)}

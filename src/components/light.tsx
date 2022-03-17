@@ -31,7 +31,7 @@ export default ((props) => {
             {light.power === 'on' ? (
               <>
                 <button
-                  className='btn'
+                  className='on-btn'
                   onClick={() => setState({ power: 'on' }, `id:${light.id}`)}
                   disabled={true}
                 >
@@ -39,7 +39,7 @@ export default ((props) => {
                 </button>
 
                 <button
-                  className='btn'
+                  className='off-btn'
                   onClick={() => setState({ power: 'off' }, `id:${light.id}`)}
                 >
                   Off
@@ -48,14 +48,14 @@ export default ((props) => {
             ) : (
               <>
                 <button
-                  className='btn'
+                  className='on-btn'
                   onClick={() => setState({ power: 'on' }, `id:${light.id}`)}
                 >
                   On
                 </button>
 
                 <button
-                  className='btn'
+                  className='off-btn'
                   onClick={() => setState({ power: 'off' }, `id:${light.id}`)}
                   disabled={true}
                 >

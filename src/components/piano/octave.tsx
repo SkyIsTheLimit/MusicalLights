@@ -1,8 +1,5 @@
 import { Key } from './key';
 
-const isPressed = (notes: string[] = [], whichOne: string) =>
-  notes.indexOf(whichOne) !== -1;
-
 const isVisible = (note: string, register: number) => {
   if (register === 0) {
     switch (note) {
