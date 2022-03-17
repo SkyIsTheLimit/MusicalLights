@@ -98,6 +98,8 @@ class HomePage extends React.Component<
   }
 
   setSelectMidiDevice(device: WebMidi.MIDIInput) {
+    if (!device) return;
+
     this.setState({
       selectedMidiDevice: device,
     });
@@ -270,7 +272,7 @@ class HomePage extends React.Component<
               <h2 className='text-2xl font-bold'>MIDI Notes Played</h2>
 
               <div>
-                <div className='flex flex-col flex-[6]'>
+                <div className='flex flex-col flex-[6] bg-neutral-800 p-12'>
                   <div className='flex items-start mb-4'>
                     <h2 className='text-lg font-bold flex mt-2'>
                       {this.state.selectedMidiDevice?.manufacturer}{' '}
@@ -295,7 +297,7 @@ class HomePage extends React.Component<
                       Connected
                     </h2>
                   </div>
-                  <div className='text-sm'>
+                  <div className='text-sm text-center'>
                     <Piano pressedNotes={pressedNotes}></Piano>
                   </div>
                 </div>
